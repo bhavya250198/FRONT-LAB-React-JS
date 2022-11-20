@@ -3,18 +3,47 @@ import React,{useEffect,useState} from "react";
 import { getExpenseDetails } from "../api/expenseDetails";
 import ExpenseTable from "./expenseTable/expenseTable";
 import Heading from "./heading";
+import TotalDetails from "./total";
 
 function ExpenseDetails(){
     const[expenseData,setExpenseData] = useState([]);
+    const [expenseDataByName,setExpenseDataByName]= useState([]);
        const getExpenseData = async ()=>{
                 try{
                     //call your service
                     const response = await getExpenseDetails();
-                        console.log("response.data.length",response.data.length);
-                        console.log("expens",expenseData.length);
+                        //filter the names with unique values 
+                        //filter the names 
+                        let arrayFilter= response.data.filter((item,index)=>
+                        response.data.findIndex(obj => obj.name === item.name) === index)
+                        console.log("arrayFilter",arrayFilter);
+                      let arrayExpenses=[]
+                        for(var i =0;i<arrayFilter.length;i++)
+                            {   
+                                let name = arrayFilter[i].name;
+                                let price = 0;
+                                let priceDetails=0;
+                                for( var j =i;j<response.data.length;j++)
+                                    {
+                                        
+                                        if(response.data[j].name === name)
+                                            {
+                                                priceDetails+=response.data[j].price;
+                                            }
+                                           
+                                    }
+                                    price+=priceDetails;
+                                    let obj={
+                                        name:name,
+                                        price:price
+                                    }
+                                    arrayExpenses.push(obj);
+                            }
+                            console.log(arrayExpenses);
                         if(response.data.length > expenseData.length)
                         {
                         setExpenseData([...response.data]);
+                        setExpenseDataByName([...arrayExpenses]);
                         }
                 }catch(err){
 
@@ -30,6 +59,9 @@ function ExpenseDetails(){
             <Heading />
             <div>
                <ExpenseTable details={expenseData} />
+            </div>
+            <div>
+                <TotalDetails details={expenseData} detailsByName={expenseDataByName}/>
             </div>
         </div>
     )
