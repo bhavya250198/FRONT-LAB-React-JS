@@ -4,17 +4,20 @@ import "./styles.scss";
 import 'antd/dist/antd.css';
 import ModalDetails from "../forms/modal";
 
-function Heading(){
+function Heading({addDetailsParent}){
     const [showForm,setShowForm] = useState(false);
     const addRecord =()=>{
-    
-        setShowForm(true);
+        debugger;
+        setShowForm(prevForm=> !prevForm);
     }
     //cancelling a record
     const hideModal =()=>{
         setShowForm(false);
     }
-   
+   const addDetails=(values)=>{
+    console.log("values",values);
+    addDetailsParent(values);
+   }
     
     return(
         <div id="heading">
@@ -22,7 +25,7 @@ function Heading(){
                 <Button className="add" onClick={()=>{addRecord()}}>Add</Button>
                 {showForm && 
                 
-                    <ModalDetails visibleForm={showForm} closeForm={hideModal}/>
+                    <ModalDetails sendValues={addDetails} visibleForm={showForm} closeForm={hideModal}/>
                 }
         </div>
     )

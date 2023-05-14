@@ -29,25 +29,24 @@
       "startDate": "2022-04-07"
     },
     {
-      "id": 5,
-      "name": "Bhavya",
-      "productPurchased": "Bike",
-      "price": 10000,
-      "startDate": "2022-10-21"
-    },
-    {
-      "name": "Bhavya",
+      "name": "Priyam",
       "productPurchased": "Soap",
       "price": 20,
-      "startDate": "2022-10-14",
-      "id": 6
+      "startDate": "2023-5-5",
+      "id": 5
     },
     {
       "name": "Bhavya",
-      "productPurchased": "Soap",
-      "price": 1000,
-      "startDate": "2022-10-21",
-      "id": 7
+      "productPurchased": "React",
+      "price": 1200,
+      "startDate": "2023-5-15",
+      "id": 6
+    }
+  ],
+  "users":[
+    {
+      "username":"abc",
+      "password":"abc@123"
     }
   ]
 }

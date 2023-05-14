@@ -1,30 +1,17 @@
 import React ,{useState} from "react";
 import {DatePicker, Form, Modal,Input,Button} from "antd";
-import { addExpenses } from "../../api/expenseDetails";
-import { dataURL } from "../../constants/apibaseurl";
-function ModalDetails({visibleForm,closeForm}){
+
+function ModalDetails({visibleForm,closeForm,sendValues}){
     const [visibleModal,setVisibleModal] = useState(visibleForm);
    
    
     const submitForm = (values)=>{
-       
-        let startDateValues = values.startDate._d.getFullYear()+"-"+values.startDate._d.getMonth()+"-"+values.startDate._d.getDate();
+       let  month = values.startDate._d.getMonth()+1;
+            month = month > 10 ? "0"+month :month;
+        let startDateValues = values.startDate._d.getFullYear()+"-"+month+"-"+values.startDate._d.getDate();
             let requestExpense = {...values,"price":parseInt(values.price),"startDate":startDateValues};
-            fetch(dataURL+"/data",{
-                method: "POST",
-              headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(requestExpense)
-        }).then(
-          (res)=>res,
-          (error)=>{
-            console.log(error);
-          }
-        )
-      
-            // const addExpense = await addExpenses(requestExpense);
-            //         console.log("addExpense",addExpense);
+            //props function
+             sendValues(requestExpense);
             setVisibleModal(false);
 
     }

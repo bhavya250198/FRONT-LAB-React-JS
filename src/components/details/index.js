@@ -4,10 +4,11 @@ import { getExpenseDetails } from "../api/expenseDetails";
 import ExpenseTable from "./expenseTable/expenseTable";
 import Heading from "./heading";
 import TotalDetails from "./total";
-
+import { dataURL } from "../constants/apibaseurl";
 function ExpenseDetails(){
     const[expenseData,setExpenseData] = useState([]);
     const [expenseDataByName,setExpenseDataByName]= useState([]);
+   
        const getExpenseData = async ()=>{
                 try{
                     //call your service
@@ -49,6 +50,23 @@ function ExpenseDetails(){
 
                 }
        } 
+       async function getExpenseValues(values){
+        console.log("valuesParent",values);
+           await fetch(dataURL+"/data",{
+                method: "POST",
+              headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(values)
+        }).then(
+          (res)=>res,
+          (error)=>{
+            console.log(error);
+          }
+        )
+        debugger;
+        getExpenseData();
+       }
        //use Effect
        useEffect(()=>{
         getExpenseData();
@@ -56,9 +74,9 @@ function ExpenseDetails(){
     
     return(
         <div id="expenseDetails">
-            <Heading />
+            <Heading addDetailsParent ={getExpenseValues}/>
             <div>
-               <ExpenseTable details={expenseData} />
+               <ExpenseTable details={expenseData}  />
             </div>
             <div>
                 <TotalDetails details={expenseData} detailsByName={expenseDataByName}/>

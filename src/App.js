@@ -1,11 +1,11 @@
-import logo from './logo.svg';
+
 import './App.css';
-import ExpenseDetails from './components/details';
+import Routing from "./components/index";
 
 function App() {
   return (
     <div className="App">
-      <ExpenseDetails/>
+      <Routing/>
     </div>
   );
 }
