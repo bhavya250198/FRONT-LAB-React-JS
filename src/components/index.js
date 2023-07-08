@@ -7,6 +7,7 @@ import {
   } from "react-router-dom";
 import ExpenseDetails from "./details";
 import Login from "./login/index";
+import TableauVisualization, { Tableau } from "./tableau";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,12 @@ const router = createBrowserRouter([
       path: "about",
       element: <div>About</div>,
     },
+    {
+      path:"tableau",
+      element:(<div>
+        <TableauVisualization/>
+        </div>)
+    }
   ]);
 
   function Routing(){

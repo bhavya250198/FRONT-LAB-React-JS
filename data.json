@@ -41,12 +41,26 @@
       "price": 1200,
       "startDate": "2023-5-15",
       "id": 6
+    },
+    {
+      "name": "Ranju",
+      "productPurchased": "Sahdev Shampoo",
+      "price": 1000,
+      "startDate": "2023-7-9",
+      "id": 7
+    },
+    {
+      "name": "Bhavya",
+      "productPurchased": "Nike Football Shoes",
+      "price": 12000,
+      "startDate": "2023-7-25",
+      "id": 8
     }
   ],
-  "users":[
+  "users": [
     {
-      "username":"abc",
-      "password":"abc@123"
+      "username": "abc",
+      "password": "abc@123"
     }
   ]
 }
